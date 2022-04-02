@@ -17,7 +17,10 @@ RegisterCommand('sitcar', function()
             sitcar = true
             LoadDict('timetable@jimmy@mics3_ig_15@')
             TaskPlayAnim(PlayerPedId(), "timetable@jimmy@mics3_ig_15@", "mics3_15_base_tracy", 8.0, -8.0, -1, 1, 0, false, false, false)
-        end
+	    ESX.ShowNotification("You've sitted on the vehicle")
+        else
+		ESX.ShowNotification("You\'re too far away from a vehicle")		
+	end
     else
         ClearPedTasks(PlayerPedId())
         alreadySit = false
