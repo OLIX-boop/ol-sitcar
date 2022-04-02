@@ -25,6 +25,7 @@ RegisterCommand('sitcar', function()
         ClearPedTasks(PlayerPedId())
         alreadySit = false
         sitcar = false
+        SetEntityCollision(PlayerPedId(), true, true)
     end
 end)
 
@@ -37,7 +38,8 @@ Citizen.CreateThread(function()
             local vehicleCoords = GetEntityCoords(vehicle, false)
             local heading = GetEntityHeading(vehicle)
 
-            SetEntityCoords(PlayerPedId(), vehicleCoords.x, vehicleCoords.y, vehicleCoords.z - 0.5, 1, 1, 1, false)
+            SetEntityCollision(PlayerPedId(), false, false)
+            SetEntityCoords(PlayerPedId(), vehicleCoords.x, vehicleCoords.y, vehicleCoords.z-0.3, 1, 1, 1, false)
             SetEntityHeading(PlayerPedId(), heading)
         end
 
