@@ -1,12 +1,6 @@
-Citizen.CreateThread(function()
-    while ESX == nil do
-        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-        Wait(100)
-    end
-end)
+ESX = exports["es_extended"]:getSharedObject()
 
 local alreadySit, sitcar = false, false
-
 
 RegisterCommand('sitcar', function()
     if not alreadySit then
@@ -36,11 +30,11 @@ Citizen.CreateThread(function()
         if sitcar then
             local vehicle = ESX.Game.GetClosestVehicle()
             local vehicleCoords = GetEntityCoords(vehicle, false)
-            local heading = GetEntityHeading(vehicle)
-
             SetEntityCollision(PlayerPedId(), false, false)
             SetEntityCoords(PlayerPedId(), vehicleCoords.x, vehicleCoords.y, vehicleCoords.z-0.3, 1, 1, 1, false)
-            SetEntityHeading(PlayerPedId(), heading)
+            SetEntityHeading(PlayerPedId(), GetEntityHeading(vehicle))
+	else
+	    Wait(1500)
         end
 
     end
